@@ -23,8 +23,8 @@ export function usePdfExtractor() {
       // Dynamic import of pdfjs-dist to avoid SSR issues
       const pdfjsLib = await import("pdfjs-dist");
 
-      // Set worker source — served from public directory
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+      // Set worker source — use CDN for reliable cross-platform loading
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs`;
 
       const loadingTask = pdfjsLib.getDocument({
         data: arrayBuffer,
